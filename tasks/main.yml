@@ -1,2 +1,47 @@
 ---
 # tasks file for automounts
+- name: ansible package dependencies
+  yum:
+    name: libsemanage-python
+
+- name: Push auto.home file created from template
+  template:
+    src: auto.home.j2
+    dest: /etc/auto.home
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload autofs
+
+- name: Push home.autofs file
+  copy:
+    src: files/home.autofs
+    dest: /etc/auto.master.d/home.autofs
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload autofs
+
+- name: Fix use_nfs_home_dirs to tell SELinux to allow NFS home directories
+  seboolean:
+    name: use_nfs_home_dirs
+    persistent: yes
+    state: yes
+
+- name: Push auto.repos file created from template
+  template:
+    src: auto.repos.j2
+    dest: /etc/auto.repos
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload autofs
+
+- name: Push repos.autofs file
+  copy:
+    src: files/repos.autofs
+    dest: /etc/auto.master.d/repos.autofs
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload autofs
