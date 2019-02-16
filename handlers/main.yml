@@ -4,5 +4,5 @@
   service:
     name: autofs
     state: reloaded
-    enabled: yes
+    enabled: true
 ...

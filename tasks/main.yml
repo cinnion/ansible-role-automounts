@@ -25,8 +25,8 @@
 - name: Fix use_nfs_home_dirs to tell SELinux to allow NFS home directories
   seboolean:
     name: use_nfs_home_dirs
-    persistent: yes
-    state: yes
+    persistent: true
+    state: true
 
 - name: Push auto.repos file created from template
   template:
