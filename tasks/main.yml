@@ -45,3 +45,21 @@
     group: root
     mode: 0644
   notify: reload autofs
+
+- name: Push auto.vol file created from template
+  template:
+    src: auto.vol.j2
+    dest: /etc/auto.vol
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload autofs
+
+- name: Push vol.autofs file
+  copy:
+    src: files/vol.autofs
+    dest: /etc/auto.master.d/vol.autofs
+    owner: root
+    group: root
+    mode: 0644
+  notify: reload autofs
