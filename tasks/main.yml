@@ -2,7 +2,15 @@
 # tasks file for automounts
 - name: ansible package dependencies
   yum:
-    name: libsemanage-python
+    name: python3-libsemanage
+
+- name: autofs dependencies
+  yum:
+    name:
+      - autofs
+      - nfs-utils
+      - nfs4-acl-tools
+      - nfsv4-client-utils
 
 - name: Push auto.home file created from template
   template:

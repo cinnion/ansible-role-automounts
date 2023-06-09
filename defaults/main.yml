@@ -1,2 +1,7 @@
 ---
 # defaults file for automounts
+nas_server:      nas.home.ka8zrt.com
+
+nfs_home_server: downbelow.home.ka8zrt.com
+nfs_home_path:   /homes/
+nfs_home_fstype: nfs
