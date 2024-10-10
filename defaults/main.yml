@@ -1,7 +1,21 @@
 ---
-# defaults file for automounts
-nas_server:      nas.home.ka8zrt.com
+#
+# Name of the NFS server.
+#
+nfs_server:      nas.example.com
 
-nfs_home_server: downbelow.home.ka8zrt.com
+#
+# Name of the NFS server providing home directories.
+#
+nfs_home_server: nas.example.com
+
+#
+# Path of the home directories on the NFS server.
+#
 nfs_home_path:   /homes/
+
+#
+# Type of NFS automount to use for home directories.
+# Recommended values: `nfs` or `nfs4`
+#
 nfs_home_fstype: nfs

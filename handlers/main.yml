@@ -1,8 +1,6 @@
 ---
-# handlers file for automounts
 - name: reload autofs
   service:
     name: autofs
     state: reloaded
     enabled: true
-...

@@ -1,5 +1,15 @@
 ---
-# tasks file for automounts
+- name: Validate variables are set
+  assert:
+    that:
+      - nfs_server is defined
+      - nfs_home_server is defined
+      - nfs_domain is defined
+      - nfs_home_type is defined
+      - nfs_nobody_user is defined
+      - nfs_nobody_group is defined
+      - nfs_home_server is defined
+
 - name: ansible package dependencies
   yum:
     name: python3-libsemanage

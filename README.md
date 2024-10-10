@@ -1,48 +1,51 @@
-Role Name
-=========
+# Role Name: automounts
 
-A brief description of the role goes here.
+This role provisions a set of NFS automounts for autofs.
 
-Requirements
-------------
+## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should
-be mentioned here. For instance, if the role uses the EC2 module, it may be a
-good idea to mention in this section that the boto package is required.
+None.
 
-Role Variables
---------------
+## Role Variables
 
-A description of the settable variables for this role should go here, including
-any variables that are in defaults/main.yml, vars/main.yml, and any variables
-that can/should be set via parameters to the role. Any variables that are read
-from other roles and/or the global scope (ie. hostvars, group vars, etc.) should
-be mentioned here as well.
+Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-Dependencies
-------------
+    nfs_server: "nas.example.com"
 
-A list of other roles hosted on Galaxy should go here, plus any details in
-regards to parameters that may need to be set for other roles, or variables that
-are used from other roles.
+Name of the NFS server.
 
-Example Playbook
-----------------
+    nfs_home_server: "nas.example.com"
 
-Including an example of how to use your role (for instance, with variables
-passed in as parameters) is always nice for users too:
+Name of the NFS server providing home directories.
 
-    - hosts: servers
+    nfs_home_path: "/homes/"
+
+Path of the home directories on the NFS server.
+
+
+    nfs_home_fstype: "nfs"
+
+Type of NFS automount to use for home directories.
+Recommended values: `nfs` or `nfs4`
+
+## Dependencies
+
+None.
+
+## Example Playbook
+
+    - hosts: automounters
       roles:
-         - { role: automounts, x: 42 }
+        - automount
 
-License
--------
+    - hosts: automounter
+      roles:
+         - { role: automounts, nfs_home_fstype: nfs4 }
+
+## License
 
 BSD
 
-Author Information
-------------------
+## Author Information
 
-An optional section for the role authors to include contact information, or a
-website (HTML is not allowed).
+This role was created in 2019 by [Douglas Needham](https://www.ka8zrt.com/).
